@@ -15,3 +15,6 @@ Actual status:
 | Day 5   | :heavy_check_mark: | :heavy_check_mark: |
 | Day 6   | :x:                |                    |
 | Day 7   | :heavy_check_mark: |                    |
+| Day 8   | :x:                |                    |
+| Day 9   |                    |                    |
+| Day 10  | :heavy_check_mark: | :heavy_check_mark: |
