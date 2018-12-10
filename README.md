@@ -2,7 +2,7 @@
 
 https://adventofcode.com/2018
 
-All the challenged have been programmed in C#.
+All the challenges have been programmed in C#.
 
 Actual status:
 
@@ -12,3 +12,4 @@ Actual status:
 | Day 2   | :heavy_check_mark: | :heavy_check_mark: |
 | Day 3   | :heavy_check_mark: | :heavy_check_mark: |
 | Day 4   | :heavy_check_mark: | :x:                |
+| Day 5   | :heavy_check_mark: | :heavy_check_mark: |
