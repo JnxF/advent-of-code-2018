@@ -57,48 +57,21 @@ namespace Day4
                 last = logEntry;
             }
 
-            var mostSleepyGuard = 0;
-            var sleepHoursOfMostSleepyGuard = 0;
-            foreach (var (id, hoursSleptArray) in fromIdToOccurencesPerMinute)
-            {
-                var total = hoursSleptArray.Sum();
-                if (total > sleepHoursOfMostSleepyGuard)
-                {
-                    sleepHoursOfMostSleepyGuard = total;
-                    mostSleepyGuard = id;
-                }
-            }
+            var mostSleepyOfEveryone = fromIdToOccurencesPerMinute.OrderByDescending(item => item.Value.Max()).Select(i => i.Key).FirstOrDefault();
 
+            // Argmax over fromIdToOccurencesPerMinute[mostSleepyofEveryone]
             int mostSleepyMinute = 0;
-            int maxDaysSleptInMostSleepyMinute = 0;
-            var hoursSleptMaxId = fromIdToOccurencesPerMinute[mostSleepyGuard];
-            for (int i = 0; i < MinutesInADay; ++i)
+            int maxSlept = 0;
+            for (int i = 0; i < fromIdToOccurencesPerMinute[mostSleepyOfEveryone].Length; ++i)
             {
-                if (hoursSleptMaxId[i] > maxDaysSleptInMostSleepyMinute)
+                if (fromIdToOccurencesPerMinute[mostSleepyOfEveryone][i] > maxSlept)
                 {
-                    maxDaysSleptInMostSleepyMinute = hoursSleptMaxId[i];
                     mostSleepyMinute = i;
+                    maxSlept = fromIdToOccurencesPerMinute[mostSleepyOfEveryone][i];
                 }
             }
 
-            // Now we know the minute, `mostSleepyMinute`
-            // we must see who is the most sleepy
-
-            int newId = 0;
-            int max = 0;
-            foreach (var (id2, hours) in fromIdToOccurencesPerMinute)
-            {
-                int sleepInThatHour = hours[mostSleepyMinute];
-                if (sleepInThatHour > max)
-                {
-                    max = sleepInThatHour;
-                    newId = id2;
-                }
-            }
-
-            // Not working ~\^_^/~
-
-            return newId * mostSleepyMinute;
+            return mostSleepyOfEveryone * mostSleepyMinute;
         }
 
         private Information InfoFromLine(string line)

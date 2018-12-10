@@ -20,7 +20,7 @@ namespace Day4
         public int Solve()
         {
             var log = _input.Split("\n").Select(line => InfoFromLine(line)).OrderBy(inf => inf.Date);
-
+            
             var fromIdToOccurencesPerMinute = new Dictionary<int, int[]>();
 
             int? currentId = null;
@@ -57,18 +57,8 @@ namespace Day4
                 last = logEntry;
             }
 
-            var mostSleepyGuard = 0;
-            var sleepHoursOfMostSleepyGuard = 0;
-            foreach (var (id, hoursSleptArray) in fromIdToOccurencesPerMinute)
-            {
-                var total = hoursSleptArray.Sum();
-                if (total > sleepHoursOfMostSleepyGuard)
-                {
-                    sleepHoursOfMostSleepyGuard = total;
-                    mostSleepyGuard = id;
-                }
-            }
-
+            var mostSleepyGuard = fromIdToOccurencesPerMinute.OrderByDescending(i => i.Value.Sum()).Select(k => k.Key).FirstOrDefault();
+            
             int mostSleepyMinute = 0;
             int maxDaysSleptInMostSleepyMinute = 0;
             var hoursSleptMaxId = fromIdToOccurencesPerMinute[mostSleepyGuard];
@@ -80,6 +70,8 @@ namespace Day4
                     mostSleepyMinute = i;
                 }
             }
+
+            // Console.WriteLine($"Most sleepy guard is {mostSleepyGuard} at minute {mostSleepyMinute}");
 
             return mostSleepyMinute * mostSleepyGuard;
         }
