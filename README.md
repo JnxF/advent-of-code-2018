@@ -8,12 +8,7 @@ Actual status:
 
 | Problem | Part I             | Part 2             |
 |---------|--------------------|--------------------|
-| Day 1   | :heavy_check_mark: | :heavy_check_mark: |
-| Day 2   | :heavy_check_mark: | :heavy_check_mark: |
-| Day 3   | :heavy_check_mark: | :heavy_check_mark: |
-| Day 4   | :heavy_check_mark: | :heavy_check_mark: |
-| Day 5   | :heavy_check_mark: | :heavy_check_mark: |
-| Day 6   | :x:                |                    |
+| Day 1-6 | :heavy_check_mark: | :heavy_check_mark: |
 | Day 7   | :heavy_check_mark: |                    |
 | Day 8   | :x:                |                    |
 | Day 9   |                    |                    |

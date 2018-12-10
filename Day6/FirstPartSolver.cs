@@ -10,8 +10,7 @@ namespace Day6
 {
     class FirstPartSolver : ISolver<int>
     {
-        private const int MatrixSide = 4000;
-        private string _input;
+        private readonly string _input;
 
         public FirstPartSolver(string input)
         {
@@ -22,74 +21,108 @@ namespace Day6
         {
             var coordinates = _input.Split("\n").Select(line => PointFromLine(line)).ToArray();
 
-            var dict = new Dictionary<int, int>();
-            var matrix = new int?[MatrixSide, MatrixSide];
-            for (int i = 0; i < MatrixSide; ++i)
+           // foreach (var c in coordinates)
+            // {
+               //  c.IsInfinite = false;
+            // }
+
+            int maxI = coordinates.Select(i => i.Y).Max();
+            int maxJ = coordinates.Select(i => i.X).Max();
+            var chesses = new Chess[maxI + 1, maxJ + 1];
+            for (int i = 0; i < chesses.GetLength(0); ++i)
             {
-                for (int j = 0; j < MatrixSide; ++j)
+                for (int j = 0; j < chesses.GetLength(1); ++j)
                 {
-                    var res = Nearest(i, j, ref coordinates);
-                    matrix[i, j] = res;
-
-                    if (res == null) continue;
-
-                    if (dict.ContainsKey(res.Value))
+                    chesses[i, j] = new Chess
                     {
-                        dict[res.Value]++;
+                        Distance = int.MaxValue,
+                        BestFound = null,
+                        Tie = false
+                    };
+                }
+            }
+
+
+            for (int i = 0; i < chesses.GetLength(0); ++i)
+            {
+                for (int j = 0; j < chesses.GetLength(1); ++j)
+                {
+                    foreach (var c in coordinates)
+                    {
+                        var current = chesses[i, j];
+                        var man = Manhattan(c, i, j);
+                        if (man < current.Distance)
+                        {
+                            current.Distance = man;
+                            current.Tie = false;
+                            current.BestFound = c;
+                        }
+                        else if (man == current.Distance)
+                        {
+                            current.Tie = true;
+                        }
                     }
-                    else
+
+                    bool border = i == 0 || j == 0 || i == chesses.GetLength(0) - 1 || j == chesses.GetLength(1) - 1;
+                    if (border)
                     {
-                        dict[res.Value] = 1;
+                        chesses[i, j].BestFound.IsInfinite = true;
                     }
                 }
             }
 
-            foreach (var x in dict.OrderBy(i => i.Value))
+            // It's funny seeing how the matrix is :D
+            /*
+            using (var r = new StreamWriter("outputMatrix.txt"))
             {
-                Console.WriteLine(x.Value);
+                for (int i = 0; i < chesses.GetLength(0); ++i)
+                {
+                    for (int j = 0; j < chesses.GetLength(1); ++j)
+                    {
+
+                        if (coordinates.Where(c => c.X == j && c.Y == i).Count() != 0)
+                        {
+                            r.Write("XX ");
+                        }
+                        else
+                        {
+                            if (chesses[i, j].Tie)
+                                r.Write("   ");
+                            else
+                            {
+                                if ((chesses[i, j].BestFound.GetHashCode() % 100) < 10)
+                                    r.Write(" ");
+                                r.Write(chesses[i, j].BestFound.GetHashCode() % 100 + " ");
+
+                            }
+                        }
+
+                    }
+                    r.WriteLine();
+                }
+            }
+            */
+
+            var dict = new Dictionary<Point, int>();
+            foreach (var c in chesses)
+            {
+                if (c.Tie) continue;
+                if (!dict.ContainsKey(c.BestFound))
+                {
+                    dict.Add(c.BestFound, 0);
+                }
+                ++dict[c.BestFound];
+
             }
 
-            return 2;
+            var greatestArea = dict.Where(x => !x.Key.IsInfinite).OrderByDescending(x => x.Value).Select(x => x.Value).FirstOrDefault();
+            return greatestArea;
         }
 
-        private static int Distance(Point p1, Point p2)
+        private static int Manhattan(Point p, int i, int j)
         {
-            return (int)(Math.Abs(p1.X - p2.X) + Math.Abs(p1.Y - p2.Y));
-        }
-
-        private static int? Nearest(int i, int j, ref Point[] coordinates)
-        {
-            int minDist = int.MaxValue;
-            int minDistId = 0;
-
-            int? tie = null;
-            Point p = new Point { Y = i, X = j };
-            for (int w = 0; w < coordinates.Length; ++w)
-            {
-                int distance = Distance(p, coordinates[w]);
-
-
-                if (distance < minDist)
-                {
-                    minDist = distance;
-                    minDistId = w;
-                }
-                else if (distance == minDist)
-                {
-                    tie = distance;
-                }
-
-            }
-
-
-            if (tie != null && tie == minDist)
-            {
-                return null;
-            }
-            else
-            {
-                return minDistId;
-            }
+            int abs(int k) => k > 0 ? k : -k;
+            return abs(p.X - j) + abs(p.Y - i);
         }
 
         private static Point PointFromLine(string line)
@@ -104,11 +137,26 @@ namespace Day6
             };
         }
 
+        class Chess
+        {
+            public int Distance { get; set; }
+
+            public Point BestFound { get; set; }
+
+            public bool Tie { get; set; }
+        }
+
         class Point
         {
             public int X { get; set; }
-
             public int Y { get; set; }
+
+            public bool IsInfinite { get; set; }
+
+            public override string ToString()
+            {
+                return $"({X}, {Y})";
+            }
         }
 
 
