@@ -6,10 +6,9 @@ All the challenges have been programmed in C#.
 
 Actual status:
 
-| Problem | Part I             | Part 2             |
-|---------|--------------------|--------------------|
-| Day 1-6 | :heavy_check_mark: | :heavy_check_mark: |
-| Day 7   | :heavy_check_mark: |                    |
-| Day 8   | :x:                |                    |
-| Day 9   | :heavy_check_mark: | :heavy_check_mark: |
-| Day 10  | :heavy_check_mark: | :heavy_check_mark: |
+| Problem  | Part I             | Part 2             |
+|----------|--------------------|--------------------|
+| Day 1-6  | :heavy_check_mark: | :heavy_check_mark: |
+| Day 7    | :heavy_check_mark: |                    |
+| Day 8    | :x:                |                    |
+| Day 9-11 | :heavy_check_mark: | :heavy_check_mark: |
