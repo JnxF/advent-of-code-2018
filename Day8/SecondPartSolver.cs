@@ -18,7 +18,7 @@ namespace Day8
 
         public string Solve()
         {
-            throw new NotImplementedException();
+            return "";
         }
     }
 }

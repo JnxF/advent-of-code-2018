@@ -10,8 +10,6 @@ namespace Day8
     class FirstPartSolver : ISolver<int>
     {
         private string _input;
-        private Tree RootTree = new Tree();
-        private int[] numbers;
 
         public FirstPartSolver(string input)
         {
@@ -20,33 +18,62 @@ namespace Day8
 
         public int Solve()
         {
-            numbers = _input.Split(" ").Select(i => int.Parse(i)).ToArray();
-            BuildTree(0, RootTree, out var totalMetadata);
-            return totalMetadata;
+            _input = "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2";
+            var numbers = _input.Split(" ").Select(number => int.Parse(number)).ToArray();
+            Tree t = GenerateTree(numbers);
+            return SumMetadata(t);
         }
 
-        private int BuildTree(int x, Tree currentTree, out int totalMetadata)
+        private Tree GenerateTree(int[] numbers)
         {
-            int childNodesNumber = numbers[x];
-            int metadataEntriesNumber = numbers[x + 1];
+            int numberSubtrees = numbers[0];
+            int numberMetadata = numbers[1];
 
-            totalMetadata = 0;
+            int[] subtreesNumbers = numbers.SkipLast(numberMetadata).Skip(2).ToArray();
 
-            int lastPointer = x+2;
-            for (int i = 0; i < childNodesNumber; ++i)
+            var Tree = new Tree
             {
-                Tree child = new Tree();
-                currentTree.Subtrees.Add(child);
-                lastPointer = BuildTree(x + 2, child, out var MiniMetadata);
-                totalMetadata += MiniMetadata;
+                Metadata = numbers.Skip(numbers.Length - numberMetadata),
+                Subtrees = ExtractNTrees(subtreesNumbers, numberSubtrees)
+            };
+
+            return Tree;
+        }
+
+        private List<Tree> ExtractNTrees(int[] numbers, int numberSubtrees)
+        {
+            if (numberSubtrees == 0)
+            {
+                return new List<Tree>();
             }
 
-            for (int i = lastPointer; i < lastPointer + metadataEntriesNumber; ++i)
+            int numChilds = numbers[0];
+            int numMetadata = numbers[1];
+
+            // If no childs
+            if (numChilds == 0)
             {
-                totalMetadata += numbers[i];
+                int subsequenceSize = 2 + numMetadata;
+
+                List<Tree> res = new List<Tree>
+                {
+                    GenerateTree(numbers.Take(subsequenceSize).ToArray())
+                };
+
+                res.AddRange(ExtractNTrees(numbers.Skip(subsequenceSize).ToArray(), numberSubtrees - 1));
+                return res;
             }
-            
-            return x + metadataEntriesNumber;
+
+            else
+            {
+                return new List<Tree>();
+            }
+        }
+
+        public int SumMetadata(Tree t)
+        {
+            if (t == null) return 0;
+            return t.Metadata.Sum() + t.Subtrees.Select(sbt => SumMetadata(sbt)).Sum();
         }
     }
 }
