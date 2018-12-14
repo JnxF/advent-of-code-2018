@@ -23,7 +23,7 @@ namespace Day13
 
             var matrix = new char[height, width];
             var cars = new List<Car>();
-            BuildMatrix(lines, cars, height, width, ref matrix);
+            BuildMatrix(lines, cars, height, width, matrix);
 
             for (int iteration = 0; ; ++iteration)
             {
@@ -63,7 +63,7 @@ namespace Day13
             return null;
         }
 
-        private void BuildMatrix(string[] lines, List<Car> cars, int height, int width, ref char[,] matrix)
+        private void BuildMatrix(string[] lines, List<Car> cars, int height, int width, char[,] matrix)
         {
             for (int i = 0; i < height; i++)
             {
