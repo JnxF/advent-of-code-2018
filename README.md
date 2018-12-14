@@ -19,4 +19,4 @@ solve this year's challenges using this language.
 | Day 1-6  | :heavy_check_mark: | :heavy_check_mark: |
 | Day 7    | :heavy_check_mark: |                    |
 | Day 8    | :x:                |                    |
-| Day 9-13 | :heavy_check_mark: | :heavy_check_mark: |
+| Day 9-14 | :heavy_check_mark: | :heavy_check_mark: |
