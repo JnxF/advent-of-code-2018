@@ -1,12 +1,10 @@
 ﻿using Helpers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
-namespace Day15
+namespace Day17
 {
-    class SecondPartSolver : ISolver<string>
+    class SecondPartSolver : ISolver<int>
     {
         private readonly string _input;
 
@@ -15,11 +13,9 @@ namespace Day15
             _input = input;
         }
 
-        public string Solve()
+        public int Solve()
         {
-            return "";
-            throw new NotImplementedException();
-
+            return 2;
         }
     }
 }

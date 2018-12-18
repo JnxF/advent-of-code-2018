@@ -21,3 +21,5 @@ solve this year's challenges using this language.
 | Day 8    | :x:                |                    |
 | Day 9-14 | :heavy_check_mark: | :heavy_check_mark: |
 | Day 16   | :heavy_check_mark: | :heavy_check_mark: |
+| Day 17   |                    |                    |
+| Day 18   | :heavy_check_mark: | :heavy_check_mark: |

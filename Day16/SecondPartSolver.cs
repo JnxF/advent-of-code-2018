@@ -59,7 +59,7 @@ namespace Day16
                 var descriptionsWithOnePossibleOperation = descriptions
                  .Select(d => (d.Opcode, DescriptionToPossibleOperations(d, knownTypes)))
                  .Where(par => par.Item2.Count == 1)
-                 .Select(_ => (_.Opcode, _.Item2.First())).ToArray();
+                 .Select(_ => (_.Opcode, _.Item2.First()));
 
                 foreach (var (opcode, operationType) in descriptionsWithOnePossibleOperation)
                 {
