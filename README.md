@@ -14,14 +14,13 @@ solve this year's challenges using this language.
 
 ## Completion status
 
-| Problem  | Part 1             | Part 2             |
-|----------|--------------------|--------------------|
-| Day 1-6  | :heavy_check_mark: | :heavy_check_mark: |
-| Day 7    | :heavy_check_mark: |                    |
-| Day 8    | :x:                |                    |
-| Day 9-14 | :heavy_check_mark: | :heavy_check_mark: |
-| Day 16   | :heavy_check_mark: | :heavy_check_mark: |
-| Day 17   |                    |                    |
-| Day 18   | :heavy_check_mark: | :heavy_check_mark: |
-| Day 19   | :heavy_check_mark: |                    |
-| Day 21   | :heavy_check_mark: |                    |
+| Problem   | Part 1             | Part 2             |
+|-----------|--------------------|--------------------|
+| Day 1-6   | :heavy_check_mark: | :heavy_check_mark: |
+| Day 7     | :heavy_check_mark: |                    |
+| Day 9-14  | :heavy_check_mark: | :heavy_check_mark: |
+| Day 16    | :heavy_check_mark: | :heavy_check_mark: |
+| Day 18    | :heavy_check_mark: | :heavy_check_mark: |
+| Day 19    | :heavy_check_mark: |                    |
+| Day 21-23 | :heavy_check_mark: |                    |
+| Day 25    | :heavy_check_mark: |                    |
