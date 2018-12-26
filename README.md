@@ -23,4 +23,5 @@ solve this year's challenges using this language.
 | Day 18    | :heavy_check_mark: | :heavy_check_mark: |
 | Day 19    | :heavy_check_mark: |                    |
 | Day 21-23 | :heavy_check_mark: |                    |
+| Day 24    | :heavy_check_mark: | :heavy_check_mark: |
 | Day 25    | :heavy_check_mark: |                    |
