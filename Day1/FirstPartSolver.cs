@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Day1
 {
-    class FirstPartSolver : ISolver<int>
+    public class FirstPartSolver : ISolver<int>
     {
         private readonly string _input;
         public FirstPartSolver(string input)

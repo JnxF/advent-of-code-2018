@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Day17
 {
-    class SecondPartSolver : ISolver<int>
+    class SecondPartSolver : ISolver<string>
     {
         private readonly string _input;
 
@@ -13,9 +13,9 @@ namespace Day17
             _input = input;
         }
 
-        public int Solve()
+        public string Solve()
         {
-            return 2;
+            return "";
         }
     }
 }
